@@ -15,6 +15,8 @@ const rateLimiter = require('./middlewares/rateLimiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const {
   MONGO_DB_ADDRESS,
+} = require('./ulits/config');
+const {
   ALLOWED_CORS,
 } = require('./ulits/constants');
 

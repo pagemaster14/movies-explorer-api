@@ -25,7 +25,7 @@ module.exports.deleteMovie = (req, res, next) => {
   Movie.findById(req.params.movieId)
     .then((movieData) => {
       if (!movieData) {
-        throw new NotFoundError({ message: 'Карточка с указанным _id не найдена' });
+        throw new NotFoundError('Карточка с указанным _id не найдена');
       }
       if (movieData.owner._id.toString() === req.user._id) {
         Movie.findByIdAndDelete(req.params.movieId)
@@ -33,7 +33,7 @@ module.exports.deleteMovie = (req, res, next) => {
             res.send({ message: 'Карточка удалена' });
           });
       } else {
-        throw new ForbiddenError({ message: 'Недостаточно прав для удаления' });
+        throw new ForbiddenError('Недостаточно прав для удаления');
       }
     })
     .catch(next);

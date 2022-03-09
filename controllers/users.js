@@ -11,7 +11,7 @@ module.exports.getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError({ message: 'Нет пользователя с таким id' });
+        throw new NotFoundError('Нет пользователя с таким id');
       }
       return res.status(200).send(user);
     })
@@ -29,12 +29,12 @@ module.exports.updateUser = (req, res, next) => {
         next(new BadRequestError(err.message));
       }
       if (err.code === 11000) {
-        throw new ConflictError({ message: 'Пользователь с данной почтой уже зарегистрирован' });
+        throw new ConflictError('Пользователь с данной почтой уже зарегистрирован');
       } next(err);
     })
     .then((user) => {
       if (!req.user._id) {
-        throw new NotFoundError({ message: 'Нет пользователя с таким id' });
+        throw new NotFoundError('Нет пользователя с таким id');
       }
       return res.status(200).send(user);
     })
@@ -57,7 +57,7 @@ module.exports.createUser = (req, res, next) => {
         next(new BadRequestError(err.message));
       }
       if (err.code === 11000) {
-        throw new ConflictError({ message: 'Пользователь с данной почтой уже зарегистрирован' });
+        throw new ConflictError('Пользователь с данной почтой уже зарегистрирован');
       } next(err);
     })
     .then(() => res.status(201).send({ message: 'Новый пользователь добавлен успешно' }))

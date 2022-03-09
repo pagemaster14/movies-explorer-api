@@ -3,7 +3,7 @@ const isURL = require('validator/lib/isURL');
 
 const linkValidator = (value) => {
   if (!isURL(value)) {
-    throw new CelebrateError({ message: 'Значение не является ссылкой' });
+    throw new CelebrateError('Значение не является ссылкой');
   }
   return value;
 };
@@ -28,9 +28,9 @@ const validateCreateMovie = celebrate({
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
-    image: Joi.string().required().custom(linkValidator),
-    trailer: Joi.string().required().custom(linkValidator),
-    thumbnail: Joi.string().required().custom(linkValidator),
+    image: Joi.string().required().custom(linkValidator).message('Значение не является ссылкой'),
+    trailer: Joi.string().required().custom(linkValidator).message('Значение не является ссылкой'),
+    thumbnail: Joi.string().required().custom(linkValidator).message('Значение не является ссылкой'),
     movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),

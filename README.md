@@ -4,6 +4,7 @@
 
 Адрес домена сервера:
 http://api.lovchevmovies.nomoredomains.rocks/
+
 Фронтэнд проекта распологается по адресу:
 https://lovchevmovies.students.nomoredomains.rocks/
 
